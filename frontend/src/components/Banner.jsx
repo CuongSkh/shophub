@@ -1,4 +1,4 @@
-import PrimaryButton from './PrimaryButton';
+import PrimaryButton from './PrimaryButton'; // [cite: 496]
 
 const Banner = ({ subtitle, buttonText }) => {
   return (
@@ -7,6 +7,7 @@ const Banner = ({ subtitle, buttonText }) => {
       <p style={{ fontSize: '16px', color: '#666', marginBottom: '20px' }}>
         Discover our latest products, best deals, and exclusive offers tailored just for you.
       </p>
+      {/* Tái sử dụng nút PrimaryButton theo bài tập nâng cao [cite: 496] */}
       <PrimaryButton label={buttonText} />
     </section>
   );
