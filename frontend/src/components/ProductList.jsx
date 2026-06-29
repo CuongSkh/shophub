@@ -1,3 +1,4 @@
+// src/components/ProductList.jsx
 import { ProductCard } from './ProductCard';
 
 export const ProductList = ({ products }) => {
@@ -22,6 +23,7 @@ export const ProductList = ({ products }) => {
       {products.map((product) => (
         <ProductCard
           key={product.id}
+          id={product.id} // Bổ sung truyền id cực kỳ quan trọng
           name={product.name}
           price={product.price}
           category={product.category}

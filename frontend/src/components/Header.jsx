@@ -1,33 +1,43 @@
-import { useState } from 'react';
+// src/components/Header.jsx
+import { NavLink } from 'react-router-dom';
 
-export const Header = ({ title, activeTab, onTabChange }) => {
-  const navItems = ['Home', 'Products', 'Users', 'Cart', 'Login'];
+export const Header = ({ title }) => {
+  const navItems = [
+    { label: 'Home', to: '/' },
+    { label: 'Products', to: '/products' },
+    { label: 'Cart', to: '/cart' },
+    { label: 'Login', to: '/login' },
+    { label: 'About', to: '/about' },     // Bài học trên lớp mở rộng
+    { label: 'Contact', to: '/contact' }, // Bài tập về nhà mở rộng
+  ];
+
+  const linkStyle = ({ isActive }) => ({
+    marginRight: '15px',
+    textDecoration: 'none',
+    color: isActive ? '#1976d2' : '#555', 
+    fontWeight: isActive ? 'bold' : 'normal', 
+    fontSize: '1rem'
+  });
 
   return (
-    <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderBottom: '1px solid #ddd', backgroundColor: '#fff' }}>
-      <h1 style={{ margin: 0, fontSize: '26px', color: '#333' }}>{title}</h1>
+    <header style={{
+      padding: '16px 24px',
+      borderBottom: '1px solid #ddd',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: '#fff'
+    }}>
+      <h1 style={{ margin: 0, color: '#1976d2', fontSize: '1.8rem' }}>{title}</h1>
       <nav>
         {navItems.map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            onClick={(e) => {
-              if (item === 'Products' || item === 'Users' || item === 'Home') {
-                e.preventDefault();
-                onTabChange(item);
-              }
-            }}
-            style={{
-              marginLeft: '20px',
-              textDecoration: 'none',
-              color: (item === activeTab || (item === 'Products' && activeTab === 'ProductDetail')) ? '#1976d2' : '#555',
-              fontWeight: (item === activeTab || (item === 'Products' && activeTab === 'ProductDetail')) ? 'bold' : 'normal',
-            }}
-          >
-            {item}
-          </a>
+          <NavLink key={item.to} to={item.to} style={linkStyle}>
+            {item.label}
+          </NavLink>
         ))}
       </nav>
     </header>
   );
 };
+
+export default Header;

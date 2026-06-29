@@ -1,8 +1,9 @@
-export const ProductCard = ({ id, name, price, category, imageUrl, description, onViewDetails }) => {
-  // Tính năng nâng cao: Gắn nhãn Premium nếu giá lớn hơn $100
-  const isPremium = price > 100;
+// src/components/ProductCard.jsx
+import { Link } from 'react-router-dom';
 
-  // Tính năng nâng cao: Giới hạn mô tả dưới 60 ký tự để giao diện đều nhau
+export const ProductCard = ({ id, name, price, category, imageUrl, description }) => {
+  // Giữ nguyên logic Session 4 nâng cao của bạn
+  const isPremium = price > 100;
   const shortDesc = description.length > 60 ? description.substring(0, 60) + '...' : description;
 
   return (
@@ -37,7 +38,6 @@ export const ProductCard = ({ id, name, price, category, imageUrl, description, 
       <img src={imageUrl} alt={name} style={{ width: '100%', height: '140px', objectFit: 'contain', borderRadius: '4px' }} />
       <h3 style={{ fontSize: '15px', margin: '4px 0', height: '40px', overflow: 'hidden' }}>{name}</h3>
       
-      {/* Label style cho Category */}
       <span style={{ alignSelf: 'flex-start', backgroundColor: '#eee', padding: '2px 6px', borderRadius: '12px', fontSize: '11px', color: '#666' }}>
         {category}
       </span>
@@ -45,12 +45,23 @@ export const ProductCard = ({ id, name, price, category, imageUrl, description, 
       <p style={{ margin: '4px 0', fontWeight: 'bold', color: '#1976d2' }}>${price}</p>
       <p style={{ margin: '4px 0', fontSize: '12px', color: '#777', flexGrow: 1 }}>{shortDesc}</p>
       
-      <button
-        onClick={() => onViewDetails(id)}
-        style={{ marginTop: 'auto', padding: '8px 12px', backgroundColor: '#1976d2', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+      {/* Thay button cũ bằng Link hướng về trang chi tiết tương ứng id */}
+      <Link
+        to={`/products/${id}`}
+        style={{ 
+          marginTop: 'auto', 
+          padding: '8px 12px', 
+          backgroundColor: '#1976d2', 
+          color: '#fff', 
+          textDecoration: 'none',
+          borderRadius: '4px', 
+          textAlign: 'center',
+          fontSize: '14px',
+          fontWeight: '500'
+        }}
       >
         View Details
-      </button>
+      </Link>
     </div>
   );
 };
