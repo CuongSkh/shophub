@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "name": "Laptop Dell Inspiron",
+        "price": 799.99,
+        "category": "Electronics",
+        "description": "High performance laptop for software engineering students.",
+        "imagePath": "data_images/prod_1.webp",
+        "costPrice": 0.0
+    }
+]
